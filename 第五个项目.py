@@ -28,27 +28,28 @@ data = [
 df = pd.DataFrame(data)
 df.to_csv("data.csv",index = False,encoding = "utf-8")
 df1 = pd.read_csv("data.csv")
-def area_sale(df: DataFrame) -> pd.Series:
-    df1 = df.groupby("地区")["金额"].max()
+def area_sale(df: DataFrame) -> str:
+    df1 = df.groupby("地区")["金额"].sum().idxmax()
     return df1
 
-def product_sale(df: DataFrame) -> pd.Series:
-    df1 = df.groupby("产品")["金额"].max()
+def product_sale(df: DataFrame) -> str:
+    df1 = df.groupby("产品")["金额"].sum().idxmax()
     return df1
 
 def total_income(df: DataFrame) -> int:
-    df1 = df.groupby("金额").max()
+    df1 = df["金额"].sum()
     return df1
 
-def check(df: DataFrame) -> DataFrame:
-    df1 = df.isnull()
+def check(df: DataFrame) -> Series:
+    df1 = df.isnull().sum()
+
     return df1
 
 df2 = area_sale(df)
-print("销售金额最高的地区:" + str(df2))
+print("销售金额最高的地区:\n" + str(df2))
 df3 = product_sale(df)
-print("销售金额最高的产品:" + str(df3))
+print("销售金额最高的产品:\n" + str(df3))
 df4 = total_income(df)
-print("总收入:" + str(df4))
+print("总收入:\n" + str(df4))
 df5 = check(df)
-print("具体缺失情况" + str(df5))
+print("具体缺失情况\n" + str(df5))
