@@ -1,0 +1,14 @@
+﻿# 数据库账号密码等敏感信息
+.env
+.env.*
+
+# Python 缓存
+__pycache__/
+*.pyc
+
+# 虚拟环境
+.venv/
+venv/
+
+# 本地数据库文件
+*.db
